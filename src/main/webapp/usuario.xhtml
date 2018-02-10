@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
+<f:view>
+	<h:body>
+		<h:form>
+			<h:outputLabel value="Nome:" />
+			<br />
+			<p:inputText size="30" value="#{usuarioMb.usuario.usuarioNome}" />
+			<p />
+			<h:outputLabel value="Data de Nascimento" />
+			<br />
+			<p:calendar size="10"
+				value="#{usuarioMb.usuario.usuarioDataNascimento}" />
+			<p />
+			<h:outputLabel value="Email:" />
+			<br />
+			<p:inputText size="25" value="#{usuarioMb.usuario.usuarioEmail}" />
+			<p />
+			<h:outputLabel value="Login" />
+			<br />
+			<p:inputText size="15" value="#{usuarioMb.usuario.usuarioLogin}" />
+			<p />
+			<h:outputLabel value="Senha:" />
+			<br />
+			<p:password feedback="true" value="#{usuarioMb.usuario.usuarioSenha}" />
+			<p />
+			<h:outputLabel value="Confirme a senha:" />
+			<br />
+			<p:password feedback="true"
+				value="#{usuarioMb.usuario.usuarioConfirmacaoSenha}" />
+			<p />
+			<p:commandButton value="Cadastrar"
+				action="#{usuarioMb.inserirUsuario}" />
+			<p:commandButton value="Cancelar" action="login.xhtml" />
+			
+				<p:ajaxStatus header="Carregando"  onstart="PF('carregando').show()" onsuccess="PF('carregando').hide()">
+					<p:dialog id="carregando" widgetVar="carregando">
+					<p:graphicImage url="images/carregando.gif" />
+				</p:dialog>
+		</p:ajaxStatus>
+		</h:form>
+	</h:body>
+</f:view>
+</html>

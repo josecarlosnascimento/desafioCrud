@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+	
+	<ui:composition template="/_template.xhtml">
+	<ui:define name="main_content">
+		<title>Novo Cliente</title>
+	<h:form id="cliente">
+	<p:messages id="messages" autoUpdate="true"/>
+			<h:panelGrid columns="1">
+			<h:outputLabel value="Nome:"/>
+			<p:inputText value="#{clienteMb.cliente.clienteNome}" size="30" />	<br/>
+			<h:outputLabel value="Data de Nascimento:"/>
+			<p:calendar locale="pt_BR" pattern="dd/MM/yyyy"  value="#{clienteMb.cliente.clienteDataNascimento}" size="10"/>		<br/>
+			<h:outputLabel value="Tipo de Cliente:" />
+			<p:selectOneMenu value="#{clienteMb.cliente.clienteTipo}">
+					<p:ajax event="change" update=":cliente:pnlCpfCnpj"/>
+					<f:selectItem itemValue="0" itemLabel="-- Selecione um Item --"/>
+					<f:selectItems value="#{tipoMb.listaTipo}"/>
+			</p:selectOneMenu> <br/>
+			<h:panelGroup id="pnlCpfCnpj">
+				<h:outputLabel value="CPF/CNPJ:"/><br/>
+				<p:inputMask mask="#{clienteMb.cliente.clienteTipo eq 1 ? '99.999.999/9999-99' :'999.999.999-99'}" size="20" value="#{clienteMb.cliente.cpfCnpj}" />	
+			</h:panelGroup>
+			 <br/>
+			<h:outputLabel value="Status:" />
+				<p:selectOneMenu value="#{clienteMb.cliente.clienteStatus}">
+					<f:selectItem itemValue="true" itemLabel="Ativo" />
+					<f:selectItem itemValue="false" itemLabel="Inativo"/>
+			</p:selectOneMenu> <br/>
+			<p/>
+			<h:panelGroup>
+			<p:commandButton value="INSERIR" action="#{clienteMb.inserirCliente}" update="@(listaClientes)"/>
+			<p:commandButton value="VOLTAR" action="listaClientes.xhtml"/>
+			</h:panelGroup>
+			</h:panelGrid>
+		
+		</h:form>
+		</ui:define>
+	</ui:composition>	
+
+</html>

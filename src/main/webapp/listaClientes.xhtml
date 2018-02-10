@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/_template.xhtml">
+<ui:define name="main_content">
+	<title>Lista de Clientes</title>
+		<h:form id="listaClientes">
+			<h:panelGrid columns="4">
+			<h:outputLabel value="Nome:"/>
+			<p:inputText value="#{clienteMb.nomeCliente}" size="30"/>
+			<p:commandButton value="PESQUISAR" action="#{clienteMb.listaClientes}" update=":listaClientes"/>
+			<p:commandButton value="NOVO CLIENTE" action="cliente.xhtml" immediate="true"/>
+			</h:panelGrid>
+		
+			<div align="center">
+				<div style="overflow: auto; max-height: 800px">
+				<p:dataTable id="lista" value="#{clienteMb.listaCliente}" var="lista" rendered="#{not empty clienteMb.listaCliente}">
+				
+					<p:column width="50">
+						<f:facet name="header">
+							<h:outputLabel value="Id"/>
+						</f:facet>
+							<div align="right">
+								<h:outputText value="#{lista.clienteId}"/>
+							</div>
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Nome"/>
+						</f:facet>
+						<h:outputText value="#{lista.clienteNome}"/>
+					</p:column>
+					
+					<p:column width="130">
+						<f:facet name="header">
+							<h:outputLabel value="Data Nascimento"/>
+						</f:facet>
+						<div align="right">
+							<h:outputText value="#{lista.clienteDataNascimento}">
+								<f:convertDateTime locale="pt_BR" pattern="dd/MM/yyyy"/>
+							</h:outputText>
+						</div>
+					</p:column>
+					
+					<p:column width="150">
+						<f:facet name="header">
+							<h:outputLabel value="Tipo de Cliente"/>
+						</f:facet>
+						<div align="center">
+							<h:outputText value="#{lista.clienteTipo eq 1? 'Juridico':'Físico'}"/>
+						</div>	
+					</p:column>
+					
+					<p:column width="170">
+						<f:facet name="header">
+							<h:outputLabel value="CPF/CNPJ"/>
+						</f:facet>
+							<h:outputText value="#{lista.cpfCnpj}"/>
+					</p:column>
+					<p:column width="130">
+						<f:facet name="header">
+							<h:outputLabel value="Status"/>
+						</f:facet>
+						<div align="center">
+							<h:outputText value="#{lista.clienteStatus eq true? 'Ativo':'Inativo'}"/>
+						</div>
+					</p:column>
+				
+					<p:column width="100">
+						<f:facet name="header">
+							<h:outputLabel value="Ações"/>
+						</f:facet>
+						<div align="center">
+							<h:panelGroup columns="2">
+								<p:commandButton immediate="true" title="Editar" icon="ui-icon-pencil" action="cliente.xhtml" ajax="false">
+									<f:setPropertyActionListener value="#{lista}" target="#{clienteMb.cliente}"/>
+								</p:commandButton>
+								<p:commandButton icon="ui-icon-trash">
+									<p:ajax oncomplete="PF('confirm').show()"/>
+									<f:setPropertyActionListener value="#{lista.clienteId}" target="#{clienteMb.cliente.clienteId}"/>
+								</p:commandButton>
+							</h:panelGroup>
+						</div>	
+					</p:column>
+				
+				
+				</p:dataTable>
+			</div>
+			</div>
+		</h:form>
+		
+			<p:dialog id="confirm" widgetVar="confirm" resizable="false" draggable="false" modal="true" showEffect="fade" hideEffect="fade">
+				
+				<f:facet name="header">
+					<h:outputText value="Desafio" />
+				</f:facet>
+				<table>
+					<tr>
+						<td>
+							<p:graphicImage url="images/question.png" width="27" height="27" styleClass="margin-left:1px" />
+						</td>
+						<td>
+							<p:outputLabel value="Deseja mesmo remover este registro?" />
+						</td>
+					</tr>
+					
+					<tr align="center">
+						<td colspan="2">
+							<p:commandButton value="Sim" action="#{clienteMb.removerCliente}" oncomplete="PF('confirm').hide()" update=":listaClientes" />
+							<p:commandButton value="Não" onclick="PF('confirm').hide()" />
+						</td>
+					</tr>
+				</table>
+			</p:dialog>
+		
+		
+		</ui:define>
+		</ui:composition>
+</html>

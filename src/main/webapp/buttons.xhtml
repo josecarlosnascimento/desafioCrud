@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<style type="text/css">
+			.ui-widget {
+				font-size: 12px !important;
+			}
+		</style>
+	</h:head>
+		<h:body>
+
+		<h:form>
+			<p:commandButton value="Info" icon="ui-icon-script"	action="#{dialogUtil.showMessageInfo}" />
+			<p:commandButton value="Erro" icon="ui-icon-script"	actionListener="#{dialogBean.showMessageError()}" />
+			<p:commandButton value="Alerta" icon="ui-icon-script" actionListener="#{dialogBean.showMessageAlerta()}" />
+			<p:commandButton value="Erro Fatal" icon="ui-icon-script" actionListener="#{dialogBean.showMessageErrorFatal()}" />
+			<p:commandButton value="Confirm" icon="ui-icon-script" onclick="PF('confirm').show()" />
+		</h:form>
+			
+			<p:dialog id="confirm" widgetVar="confirm" resizable="false" draggable="false" modal="true" showEffect="fade" hideEffect="fade">
+				
+				<f:facet name="header">
+					<h:outputText value="Confirm" />
+				</f:facet>
+				<table>
+					<tr>
+						<td>
+							<p:graphicImage url="images/question.png" width="27" height="27" styleClass="margin-left:1px" />
+						</td>
+						<td>
+							<p:outputLabel value="Deseja continuar?" />
+						</td>
+					</tr>
+					
+					<tr align="center">
+						<td colspan="2">
+							<p:commandButton value="Sim" onclick="PF('confirm').hide()" />
+							<p:commandButton value="Não" onclick="PF('confirm').hide()" />
+						</td>
+					</tr>
+				</table>
+			</p:dialog>
+			
+		<p:ajaxStatus onstart="PF('carregando').show()"	onsuccess="PF('carregando').hide()">
+			<f:facet name="start">
+				<p:outputLabel value="Carregando" />
+			</f:facet>
+			<p:dialog id="carregando" widgetVar="carregando">
+				<p:graphicImage url="images/carregando.gif" />
+			</p:dialog>
+		</p:ajaxStatus>
+	</h:body>
+</f:view>
+</html>

@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<style>
+			*{
+				font-size: 12px !important;
+			}
+		</style>
+	</h:head>
+	<h:body>
+	<div id="menu">
+		<ui:insert name="menu">
+			<ui:include src="menu.xhtml"/>
+		 </ui:insert>
+	</div>	 
+	<p/>
+	<div id="main_content">
+		 <ui:insert name="main_content">
+		 
+		 </ui:insert>
+	</div>	 
+	
+	
+		<p:ajaxStatus header="Carregando"  onstart="PF('carregando').show()" onsuccess="PF('carregando').hide()">
+			<p:dialog id="carregando" widgetVar="carregando">
+				<p:graphicImage url="images/carregando.gif" />
+			</p:dialog>
+		</p:ajaxStatus>
+	
+	</h:body>
+</f:view>
+</html>

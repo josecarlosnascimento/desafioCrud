@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+	
+<f:view>
+	<h:head>
+			<style>
+			*{
+				font-size: 12px !important;
+			}
+		</style>
+	</h:head>
+	<title>Login</title>
+	<h:body>
+		<h:form>
+		<p:messages id="messages"/>
+			<div align="center">
+				<p:panel header="Login" style="margin-bottom:20px; width:450px; margin-top:10%">
+					<h:outputLabel value="Login:"/>
+					<p:inputText value="#{loginMb.usuario.usuarioLogin}" required="true" requiredMessage="Digite o Login"/>		<p/>
+					<h:outputLabel value="Senha:"/>
+					<p:password value="#{loginMb.usuario.usuarioSenha}" required="true" requiredMessage="Digite a Senha"/>		<br/>
+					<p:commandLink value="Cadastre-se para acessar" action="usuario.xhtml"/><p/>
+					<p:commandButton value="Entrar" action="#{loginMb.loginUsuario}" style="width:155px"/>
+				</p:panel>
+			</div>
+		
+		</h:form>
+	</h:body>
+</f:view>
+
+</html>
