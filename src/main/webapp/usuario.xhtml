@@ -38,9 +38,9 @@
 			<p:commandButton value="Cancelar" action="login.xhtml" />
 			
 				<p:ajaxStatus header="Carregando"  onstart="PF('carregando').show()" onsuccess="PF('carregando').hide()">
-					<p:dialog id="carregando" widgetVar="carregando">
-					<p:graphicImage url="images/carregando.gif" />
-				</p:dialog>
+					<p:dialog showHeader="false" id="carregando" widgetVar="carregando">
+						<p:graphicImage url="images/carregando.gif" />
+					</p:dialog>
 		</p:ajaxStatus>
 		</h:form>
 	</h:body>

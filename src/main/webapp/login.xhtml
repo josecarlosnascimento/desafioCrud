@@ -22,7 +22,7 @@
 					<p:inputText value="#{loginMb.usuario.usuarioLogin}" required="true" requiredMessage="Digite o Login"/>		<p/>
 					<h:outputLabel value="Senha:"/>
 					<p:password value="#{loginMb.usuario.usuarioSenha}" required="true" requiredMessage="Digite a Senha"/>		<br/>
-					<p:commandLink value="Cadastre-se para acessar" action="usuario.xhtml"/><p/>
+					<h:commandLink action="usuario.xhtml" value="Cadastre-se para acessar" immediate="true"/><p/>
 					<p:commandButton value="Entrar" action="#{loginMb.loginUsuario}" style="width:155px"/>
 				</p:panel>
 			</div>
