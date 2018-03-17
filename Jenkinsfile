@@ -6,7 +6,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_3_9') {
-                    sh 'mvn package'
+                    sh 'mvn test'
                 }
             }
         }
@@ -15,7 +15,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_3_9') {
-                    sh 'mvn test'
+                    sh 'mvn package'
                 }
             }
         }
