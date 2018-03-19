@@ -28,7 +28,6 @@ public class DesafioListener implements PhaseListener {
 
 	@Override
 	public void beforePhase(PhaseEvent arg0) {
-		System.out.println("abc");
 
 	}
 
