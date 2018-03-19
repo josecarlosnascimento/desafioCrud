@@ -13,7 +13,8 @@
 			<h:outputLabel value="Nome:"/>
 			<p:inputText value="#{clienteMb.cliente.clienteNome}" size="30" />	<br/>
 			<h:outputLabel value="Data de Nascimento:"/>
-			<p:calendar locale="pt_BR" pattern="dd/MM/yyyy"  value="#{clienteMb.cliente.clienteDataNascimento}" size="10"/>		<br/>
+			<p:calendar mask="99/99/9999" locale="pt_BR"
+			 pattern="dd/MM/yyyy"  value="#{clienteMb.cliente.clienteDataNascimento}" size="10"/>		<br/>
 			<h:outputLabel value="Tipo de Cliente:" />
 			<p:selectOneMenu value="#{clienteMb.cliente.clienteTipo}">
 					<p:ajax event="change" update=":cliente:pnlCpfCnpj"/>

@@ -18,12 +18,21 @@
 		<p:messages id="messages"/>
 			<div align="center">
 				<p:panel header="Login" style="margin-bottom:20px; width:450px; margin-top:10%">
+					<h:panelGrid columns="2">
 					<h:outputLabel value="Login:"/>
-					<p:inputText value="#{loginMb.usuario.usuarioLogin}" required="true" requiredMessage="Digite o Login"/>		<p/>
+					<p:inputText size="25" value="#{loginMb.usuario.usuarioLogin}" required="true" requiredMessage="Digite o Login"/>		
 					<h:outputLabel value="Senha:"/>
-					<p:password value="#{loginMb.usuario.usuarioSenha}" required="true" requiredMessage="Digite a Senha"/>		<br/>
-					<h:commandLink action="usuario.xhtml" value="Cadastre-se para acessar" immediate="true"/><p/>
-					<p:commandButton value="Entrar" action="#{loginMb.loginUsuario}" style="width:155px"/>
+					<p:password size="25" value="#{loginMb.usuario.usuarioSenha}" required="true" requiredMessage="Digite a Senha"/>		
+					<p:column/>
+					<p:column style="float:right">
+					<div align="center">
+						<h:commandLink action="usuario.xhtml" value="Cadastre-se para acessar" immediate="true"/>
+					</div>	
+					<p/>
+					</p:column>
+					<p:column/>
+					<p:commandButton value="Entrar" action="#{loginMb.loginUsuario}" style="width:170px"/>
+					</h:panelGrid>	
 				</p:panel>
 			</div>
 		
