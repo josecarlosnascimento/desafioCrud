@@ -47,5 +47,12 @@ public class ClienteDao {
 		em.merge(cliente);
 		em.getTransaction().commit();
 	}
+	
+	public Integer verificaCPFCNPJ(String cpfCnpj){
+		em = ConnectionManager.open().createEntityManager();
+		Query query = em.createQuery("SELECT cliente FROM ClienteTo cliente WHERE cliente.cpfCnpj = :cpfCnpj");
+		query.setParameter("cpfCnpj", cpfCnpj);
+		return query.getResultList().size();
+	}
 
 }

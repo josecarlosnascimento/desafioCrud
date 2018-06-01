@@ -19,6 +19,7 @@ public class ClienteMb {
 	private String nomeCliente;
 	
 	public String inserirCliente(){
+		Integer count = null;
 		listaCliente.clear();
 
 		if(cliente.getClienteId() != null && cliente.getClienteId() >0){
@@ -27,14 +28,24 @@ public class ClienteMb {
 			DialogUtil.showMessageInfo("Cliente atualizado com sucesso.");
 			cliente = new ClienteTo();
 		}else {
-			clienteDao.inserirCliente(cliente);
+			count = clienteDao.verificaCPFCNPJ(cliente.getCpfCnpj());
 			
-			DialogUtil.showMessageInfo("Cliente cadastrado com sucesso.");
-			cliente = new ClienteTo();
+			if(count == null || count == 0){
+				
+				clienteDao.inserirCliente(cliente);
+				
+				DialogUtil.showMessageInfo("Cliente cadastrado com sucesso.");
+				cliente = new ClienteTo();
+				listaCliente.addAll(clienteDao.listaClientes());
+				return "listaClientes.xhtml";
+			}else {
+				DialogUtil.showMessageAlerta("Este CPF/CNPJ já foi cadastrado.");
+			}
+			
+			
 		}
+		return null;
 		
-		listaCliente.addAll(clienteDao.listaClientes());
-		return "listaClientes.xhtml";
 		
 	}
 	
